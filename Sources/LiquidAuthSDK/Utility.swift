@@ -126,7 +126,7 @@ public enum Utility {
         }
     }
 
-    static func encodePKToEC2COSEKey(_ publicKey: Data) -> [UInt8] {
+    public static func encodePKToEC2COSEKey(_ publicKey: Data) -> [UInt8] {
         var adjustedPublicKey = publicKey
 
         // Check if the public key is 64 bytes long
@@ -162,7 +162,7 @@ public enum Utility {
         }
     }
 
-    static func getAttestedCredentialData(aaguid: UUID, credentialId: Data, publicKey: Data) -> Data {
+    public static func getAttestedCredentialData(aaguid: UUID, credentialId: Data, publicKey: Data) -> Data {
         // Encode the public key into CBOR format
         let cborPublicKey = encodePKToEC2COSEKey(publicKey)
         let credentialIdLengthData = UInt16(credentialId.count).toDataBigEndian()
@@ -170,7 +170,7 @@ public enum Utility {
         return attestedCredentialData
     }
 
-    static func hashSHA256(_ input: Data) -> Data {
+    public static func hashSHA256(_ input: Data) -> Data {
         return Data(SHA256.hash(data: input))
     }
 }
