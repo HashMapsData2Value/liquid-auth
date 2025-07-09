@@ -176,27 +176,27 @@ public enum Utility {
 }
 
 extension UInt8 {
-    func toData() -> Data {
+    public func toData() -> Data {
         return Data([self])
     }
 }
 
 extension UInt16 {
-    func toDataBigEndian() -> Data {
+    public func toDataBigEndian() -> Data {
         var value = bigEndian
         return Data(bytes: &value, count: MemoryLayout.size(ofValue: value))
     }
 }
 
 extension UInt32 {
-    func toDataBigEndian() -> Data {
+    public func toDataBigEndian() -> Data {
         var value = bigEndian
         return Data(bytes: &value, count: MemoryLayout.size(ofValue: value))
     }
 }
 
 extension UUID {
-    func toData() -> Data {
+    public func toData() -> Data {
         var uuid = self.uuid
         return Data(bytes: &uuid, count: MemoryLayout.size(ofValue: uuid))
     }
@@ -218,7 +218,7 @@ private extension Character {
 }
 
 extension CBOR {
-    func asSwiftObject() -> Any? {
+    public func asSwiftObject() -> Any? {
         switch self {
         case let .map(map):
             var dict = [String: Any]()
@@ -247,7 +247,7 @@ extension CBOR {
         }
     }
 
-    func asStringOrNumber() -> String? {
+    public func asStringOrNumber() -> String? {
         switch self {
         case let .utf8String(str): return str
         case let .unsignedInt(n): return String(n)
