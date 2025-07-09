@@ -1,4 +1,4 @@
-// swift-tools-version:5.7
+// swift-tools-version:5.9
 import PackageDescription
 
 let package = Package(
@@ -14,15 +14,15 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/valpacket/SwiftCBOR.git",
-            revision: "ea5ece79b0efde241495bfaa74eccceeffc382bc"
+            url: "https://github.com/valpackett/SwiftCBOR.git",
+            branch: "master"
         ),
         .package(
             url: "https://github.com/socketio/socket.io-client-swift.git",
             revision: "42da871d9369f290d6ec4930636c40672143905b"
         ),
         .package(url: "https://github.com/norio-nomura/Base32.git", from: "0.5.4"),
-        .package(url: "https://github.com/stasel/WebRTC.git", .upToNextMajor("138.0.0")),
+        .package(url: "https://github.com/stasel/WebRTC.git", from: "138.0.0"),
     ],
     targets: [
         .target(
