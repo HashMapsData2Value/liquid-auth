@@ -2,11 +2,10 @@ import Base32
 import CryptoKit
 import Foundation
 import SwiftCBOR
-import UIKit
 
-enum Utility {
+public enum Utility {
     /// Extracts the origin and request ID from a Liquid Auth URI.
-    static func extractOriginAndRequestId(from uri: String) -> (origin: String, requestId: String)? {
+    public static func extractOriginAndRequestId(from uri: String) -> (origin: String, requestId: String)? {
         guard let url = URL(string: uri),
               url.scheme == "liquid",
               let host = url.host,
@@ -19,13 +18,19 @@ enum Utility {
     }
 
     /// Constructs a user agent string based on the app and device information.
-    static func getUserAgent() -> String {
+    public static func getUserAgent() -> String {
         let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "UnknownApp"
         let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "UnknownVersion"
-        let deviceModel = UIDevice.current.model
-        let systemName = UIDevice.current.systemName
-        let systemVersion = UIDevice.current.systemVersion
-
+        let systemVersion = ProcessInfo.processInfo.operatingSystemVersionString
+        
+        return "\(appName)/\(appVersion) (\(systemVersion))"
+    }
+    
+    /// Constructs a user agent string with custom device information.
+    public static func getUserAgent(deviceModel: String, systemName: String, systemVersion: String) -> String {
+        let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "UnknownApp"
+        let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "UnknownVersion"
+        
         return "\(appName)/\(appVersion) (\(deviceModel); \(systemName) \(systemVersion))"
     }
 

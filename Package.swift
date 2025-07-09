@@ -4,7 +4,8 @@ import PackageDescription
 let package = Package(
     name: "LiquidAuthSDK",
     platforms: [
-        .iOS(.v17)
+        .iOS(.v17),
+        .macOS(.v12)
     ],
     products: [
         .library(
@@ -33,7 +34,10 @@ let package = Package(
                 .product(name: "SocketIO", package: "socket.io-client-swift"),
                 .product(name: "WebRTC", package: "WebRTC"),
             ],
-            path: "Sources/LiquidAuthSDK"
+            path: "Sources/LiquidAuthSDK",
+            resources: [
+                .process("auth.request.json")
+            ]
         ),
         .testTarget(
             name: "LiquidAuthSDKTests",
